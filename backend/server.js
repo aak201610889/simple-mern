@@ -11,6 +11,11 @@ const uri = process.env.ATLAS_URI;
 
 mongoose.connect(uri, { useNewUrlParser: true })
 
+const connection =
+  mongoose.connection;
+connection.once('open', () => {
+  console.log('Mongodb database connecting well');
+ })
 
 app.get('/',(req,res)=>{res.send('hello')})
 app.listen(port ,()=>{console.log('server on port '+port);})
