@@ -15,7 +15,12 @@ const connection =
   mongoose.connection;
 connection.once('open', () => {
   console.log('Mongodb database connecting well');
- })
+})
+const exerciseRouter = require('./routes/exercises')
+const userRouter=require('./routes/users')
 
-app.get('/',(req,res)=>{res.send('hello')})
-app.listen(port ,()=>{console.log('server on port '+port);})
+app.use("/exercises", exerciseRouter);
+app.use("/users", userRouter);
+
+app.listen(port, () => { console.log('server on port ' + port); })
+//TODO: CHECK FOR API
